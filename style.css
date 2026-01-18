@@ -5,12 +5,13 @@
   font-family: Poppins, sans-serif;
 }
 
+/* ================= DESKTOP BEHAVIOR ================= */
 html, body {
   height: 100%;
   overflow: hidden;
 }
 
-/* DARK / LIGHT */
+/* ================= DARK / LIGHT ================= */
 body.dark {
   background: linear-gradient(135deg, #0f2027, #203a43);
   color: white;
@@ -21,7 +22,7 @@ body.light {
   color: #111;
 }
 
-/* NAVBAR */
+/* ================= NAVBAR ================= */
 .navbar {
   position: fixed;
   top: 0;
@@ -49,7 +50,7 @@ body.light {
   object-fit: contain;
 }
 
-/* NAV LINKS */
+/* NAV */
 .nav-menu {
   list-style: none;
   display: flex;
@@ -77,16 +78,16 @@ body.light {
   font-size: 20px;
 }
 
-/* SECTION */
+/* ================= SECTION ================= */
 .section {
-  height: 100vh;
+  min-height: 100vh;
   padding-top: 100px;
   display: flex;
   justify-content: center;
   align-items: center;
 }
 
-/* PAGE SLIDE */
+/* ================= PAGE SLIDE ================= */
 .page {
   position: absolute;
   inset: 0;
@@ -103,8 +104,8 @@ body.light {
   opacity: 1;
 }
 
-/* GLASS CARD */
-.glass {
+/* ================= GLASS ================= */
+glass {
   background: rgba(255,255,255,0.15);
   padding: 40px 45px;
   border-radius: 22px;
@@ -114,7 +115,7 @@ body.light {
   box-shadow: 0 8px 32px rgba(0,0,0,0.35);
 }
 
-/* ================= HOME FIX (IMPORTANT) ================= */
+/* HOME */
 #home .glass {
   display: flex;
   flex-direction: column;
@@ -129,14 +130,13 @@ body.light {
 #home p {
   margin-top: 14px;
   font-size: 16px;
-  opacity: 0.9;
 }
 
 #home .btn {
-  margin-top: 28px;   /* ⬅ spacing fix */
+  margin-top: 28px;
 }
 
-/* ================= EDUCATION & PROJECTS ================= */
+/* EDUCATION + PROJECTS */
 #education .glass,
 #projects .glass {
   text-align: left;
@@ -192,14 +192,41 @@ body.light {
   box-shadow: 0 0 20px cyan;
 }
 
-/* MOBILE */
+/* ================= MOBILE FIX (CRITICAL) ================= */
 @media (max-width: 768px) {
+
+  /* Allow vertical scrolling ONLY on mobile */
+  html, body {
+    overflow-y: auto;
+  }
+
+  .page {
+    position: relative;        /* 🔑 FIX */
+    min-height: calc(100vh - 100px);
+    transform: none;
+    opacity: 1;
+  }
+
+  .section {
+    align-items: flex-start;
+    padding-top: 120px;
+  }
+
+  .glass {
+    padding: 28px;
+  }
+
+  #home h1 {
+    font-size: 26px;
+  }
+
+  /* Mobile menu */
   .nav-menu {
     position: absolute;
     top: 60px;
     right: 20px;
     flex-direction: column;
-    background: rgba(0,0,0,0.8);
+    background: rgba(0,0,0,0.85);
     padding: 15px;
     display: none;
   }
@@ -210,13 +237,5 @@ body.light {
 
   .hamburger {
     display: block;
-  }
-
-  #home h1 {
-    font-size: 26px;
-  }
-
-  .glass {
-    padding: 30px;
   }
 }
